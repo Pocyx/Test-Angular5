@@ -8,6 +8,8 @@ import { ClientService } from './client.service';
 import { MessageService } from './message.service';
 import { MessagesComponent } from './messages/messages.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 @NgModule({
@@ -15,11 +17,13 @@ import { ClientDetailComponent } from './client-detail/client-detail.component';
     AppComponent,
     ClientsComponent,
     ClientDetailComponent,
-    MessagesComponent
+    MessagesComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    AppRoutingModule,
   ],
   providers: [
     ClientService,

@@ -16,4 +16,9 @@ export class ClientService {
     return of(CLIENTS);
   }
 
+  getClient(id: number): Observable<Client> {
+    this.messageService.add(`ClientService: fetched client id=${id}`);
+    return of(CLIENTS.find(client => client.id === id));
+  }
+
 }
