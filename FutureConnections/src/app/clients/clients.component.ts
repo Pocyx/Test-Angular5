@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from '../client';
 import { CLIENTS } from '../mock-clients';
 import { checkAndUpdateDirectiveInline } from '@angular/core/src/view/provider';
+import { ClientService } from '../client.service';
 
 @Component({
   selector: 'app-clients',
@@ -9,17 +10,25 @@ import { checkAndUpdateDirectiveInline } from '@angular/core/src/view/provider';
   styleUrls: ['./clients.component.css']
 })
 export class ClientsComponent implements OnInit {
-  clients = CLIENTS;
+  /*clients = CLIENTS;*/
 
   selectedClient: Client;
 
-  constructor() { }
+  clients: Client[];
+
+  constructor(private clientService: ClientService) { }
 
   ngOnInit() {
+    this.getClients();
   }
 
   onSelect(client: Client): void {
     this.selectedClient = client;
+  }
+
+  getClients(): void {
+    this.clientService.getClients()
+      .subscribe(clients => this.clients = clients);
   }
 
 }
