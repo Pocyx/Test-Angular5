@@ -23,11 +23,35 @@
 
 <!--<app-client-detail [client]="selectedClient"></app-client-detail>-->
 
-<h2>My Clients</h2>
+<!--<h2>My Clients</h2>
 <ul class="clients">
   <li *ngFor="let client of clients">
     <a routerLink="/detail/{{client.id}}">
       <span class="badge">{{client.id}}</span> {{client.name}}
     </a>
   </li>
+</ul>-->
+
+<h2>My Clients</h2>
+ 
+<div>
+  <label>Client name:
+    <input #clientName />
+  </label>
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button (click)="add(clientName.value); clientName.value=''">
+    add
+  </button>
+</div>
+ 
+<ul class="clients">
+  <li *ngFor="let client of clients">
+    <a routerLink="/detail/{{client.id}}">
+      <span class="badge">{{client.id}}</span> {{client.name}}
+    </a>
+    <button class="delete" title="delete client"
+    (click)="delete(client)">x</button>
+  </li>
 </ul>
+
+

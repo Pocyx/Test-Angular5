@@ -10,6 +10,11 @@ import { MessagesComponent } from './messages/messages.component';
 import { ClientDetailComponent } from './client-detail/client-detail.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+
+import { HttpClientModule }    from '@angular/common/http';
+import { ClientSearchComponent } from './client-search/client-search.component';
 
 
 @NgModule({
@@ -18,12 +23,20 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ClientsComponent,
     ClientDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    ClientSearchComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+      InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [
     ClientService,
